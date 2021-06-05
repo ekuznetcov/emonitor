@@ -1,0 +1,10 @@
+Flask_Cors==3.0.10
+urllib3==1.22
+Werkzeug==1.0.1
+Flask==1.1.2
+backports.statistics==0.1.0
+Cython==0.29.23
+ipaddr==2.2.0
+ordereddict==1.1
+wincertstore==0.2
+uwsgi==2.0.19.1

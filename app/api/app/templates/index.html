@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/input_form.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #DEDEDE;">
+        <div class="container-fluid">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" style="color:#7B61FF">EMonitor</a>
+            <input class="form-control form-control-light me-3 w-300 " type="text" placeholder="Search...">
+            <button class="btn btn-outline-light" type="submit" style="color:#7B61FF">Search</button>
+        </div>
+    </nav>
+
+    <div class="container-fluid ">
+        <div class="row flex-xl-nowrap ">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse ">
+                <div class="sidebar-sticky pt-5">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-5 text-center text-muted ">
+                        <span>You have not yet opened a folder</span>
+                    </h6>
+                    <ul class="nav flex-column ">
+                        <div class="input-group justify-content-center ">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" style="display:none" data-file-input multiple>
+                                <label class="btn btn-primary" style="background-color:#7B61FF; outline-color: #7B61FF;" for="inputGroupFile04">Select folder</label>
+                            </div>
+                        </div>
+                    </ul>
+                    <h6 class="sidebar-heading Ll-flex d-flex justify-content-between align-items-center px-3 mt-4 mb-5 text-center text-muted ">
+                        <span>You can also open a single file</span>
+                    </h6>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-5 text-center text-muted ">
+                        <span>You have not yet opened a folder</span>
+                    </h6>
+                </div>
+            </nav>
+            <div id="content" class="col-md-5 p-lg-5 mx-auto my-5 text-center">
+                <h1 class="display-4 font-weight-normal" style="color: #dedede;">EMonitor</h1>
+            </div>
+            <script>
+                let filesHandler = e => {
+                        reader = new FileReader();
+                        reader.onload = function() {
+                            console.log(reader.result);
+                            document.getElementById("content").innerHTML = reader.result;
+                        }
+                        let size = 0,
+                            files = e.target.files,
+                            amount = files.length;
+                        console.log(amount);
+                        for (let i = 0; i < amount; i++) {
+                            size += files[i].size;
+                            console.log(files[i].name);
+                            reader.readAsText(files[i]);
+
+                        }
+                        //document.getElementById("fileSize").innerHTML = size;
+                    }
+                    // get all fileInputs and add EventListner for all
+                let fileInputs = document.querySelectorAll("input[data-file-input]");
+
+                for (let i = 0; i < fileInputs.length; i++) {
+                    let input = fileInputs[i];
+                    input.addEventListener("change", filesHandler);
+                }
+
+                let dropbox = document.getElementById("sidebarMenu");
+                dropbox.addEventListener("dragenter", dragenter);
+                dropbox.addEventListener("dragover", dragover);
+                dropbox.addEventListener("drop", drop);
+
+                function dragenter(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+
+                function dragover(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+
+                function drop(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    let dataTransfer = e.dataTransfer;
+                    let files = dataTransfer.files;
+                    console.log(files.length);
+                    console.log(files[0].name);
+                }
+            </script>
+        </div>
+    </div>
+
+    <script src="/static/js/bootstrap.js "></script>
+</body>
+
+</html>
