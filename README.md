@@ -1,5 +1,5 @@
 # Средство визуализации данных параллельных программ EMonitor
-Подробнее в Wiki
+Подробнее в [Wiki](https://github.com/ekuznetcov/emonitor/tree/master/Wiki)
 
 ### Структура проекта
 #### Внутренняя структура:
