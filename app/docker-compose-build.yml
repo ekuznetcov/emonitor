@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   api:
-    image: emonitor_api
+    build: api
     # command: uwsgi app.ini
     container_name: api
     environment:
@@ -12,7 +12,7 @@ services:
     volumes: 
     - /home/user/energy:/home/user/energy
   nginx:
-    image: emonitor_nginx
+    build: nginx
     volumes:
     - type: bind
       source: ./nginx/nginx.conf
